@@ -1,4 +1,4 @@
-package uk.lset.controller;
+/*package uk.lset.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,3 +22,4 @@ public class RegisterRequest {
     private Role role;
 
 }
+*/

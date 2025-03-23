@@ -1,23 +1,23 @@
 server:
   port: 8001
-
+ 
 spring:
-  application:
-    name: inventory_management_system
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://:3306/inventory_management_system
-    username: "root"
-    password: "Iceland1!"
-    hikari:
-      initialization-fail-timeout: 0
-  sql:
-    int:
-      platform: mysql
-      mode: always
-  jpa:
-    databasePlatform: "org.hibernate.dialect.MySQLDialect"
-    generate-ddl: true
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+    application:
+      name: inventory_management_system
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/inventory_management_system
+        username: "root"
+        password: "Iceland1!"
+        hikari:
+            initialization-fail-timeout: 0  
+    sql:
+        int:
+          platform: mysql
+          mode: always        
+    jpa:
+        databasePlatform: "org.hibernate.dialect.MySQLDialect"
+        generate-ddl: true
+        show-sql: true
+        hibernate:
+            ddl-auto: update

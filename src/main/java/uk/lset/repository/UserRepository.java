@@ -1,4 +1,4 @@
-package uk.lset.repository;
+/*package uk.lset.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import uk.lset.entities.User;
@@ -11,3 +11,4 @@ public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findByEmail(String email);
 
 }
+*/
