@@ -2,8 +2,26 @@ server:
   port: 8001
  
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          cognito:
+            clientId: clientId
+            clientSecret: clientSecret
+            scope: openid
+            redirect-uri: http://localhost:8080/login/oauth2/code/cognito
+            clientName: clientName
+        provider:
+          cognito:
+            issuerUri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_3Ur0Sp3kZ
+            user-name-attribute: cognito:username
+
+      resourceserver:
+        jwt:
+            issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_3Ur0Sp3kZ
     application:
-      name: inventory_management_system
+    name: inventory_management_system
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
         url: jdbc:mysql://localhost:3306/inventory_management_system
