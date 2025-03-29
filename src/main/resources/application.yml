@@ -6,9 +6,9 @@ spring:
     name: inventory_management_system
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/inventory_management_system
-    username: "root"
-    password: "root"
+    url: jdbc:mysql://db-mysql-lon1-75379-do-user-19481328-0.d.db.ondigitalocean.com:25060/inventory_management_system
+    username: "inventory_management_system"
+    password: "AVNS_W2DnzTZix5kFAUz4m2G"
     hikari:
       initialization-fail-timeout: 0
   sql:
