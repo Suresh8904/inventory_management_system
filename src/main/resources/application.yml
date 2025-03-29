@@ -29,7 +29,7 @@ spring:
             clientId: clientId
             clientSecret: clientSecret
             scope: openid
-            redirect-uri: http://localhost:8080/login/oauth2/code/cognito
+            redirect-uri: http://standevpro.co.uk:8080/login/oauth2/code/cognito
             clientName: clientName
         provider:
           cognito:
@@ -53,7 +53,7 @@ springdoc:
 #Spring Security with Cognito
 uk:
   lset:
-    service_url: http://localhost:8009
+    service_url: http://db-mysql-lon1-75379-do-user-19481328-0.d.db.ondigitalocean.com:8009
     jwt:
       aws:
         userPoolId: us-east-1_5MncTZem5
