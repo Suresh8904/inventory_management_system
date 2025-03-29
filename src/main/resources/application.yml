@@ -1,7 +1,26 @@
 server:
   port: 8001
- 
+
 spring:
+  application:
+    name: inventory_management_system
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/inventory_management_system
+    username: "root"
+    password: "root"
+    hikari:
+      initialization-fail-timeout: 0
+  sql:
+    int:
+      platform: mysql
+      mode: always
+  jpa:
+    databasePlatform: "org.hibernate.dialect.MySQLDialect"
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
   security:
     oauth2:
       client:
@@ -14,28 +33,28 @@ spring:
             clientName: clientName
         provider:
           cognito:
-            issuerUri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_3Ur0Sp3kZ
+            issuerUri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_5MncTZem5
             user-name-attribute: cognito:username
 
       resourceserver:
         jwt:
-            issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_3Ur0Sp3kZ
-    application:
-    name: inventory_management_system
-    datasource:
-        driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/inventory_management_system
-        username: "root"
-        password: "Iceland1!"
-        hikari:
-            initialization-fail-timeout: 0  
-    sql:
-        int:
-          platform: mysql
-          mode: always        
-    jpa:
-        databasePlatform: "org.hibernate.dialect.MySQLDialect"
-        generate-ddl: true
-        show-sql: true
-        hibernate:
-            ddl-auto: update
+          issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_5MncTZem5
+
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+
+springdoc:
+  api-docs:
+    path: /swagger-ui.html
+
+#Spring Security with Cognito
+uk:
+  lset:
+    service_url: http://localhost:8009
+    jwt:
+      aws:
+        userPoolId: us-east-1_5MncTZem5
+        region: us-east-1

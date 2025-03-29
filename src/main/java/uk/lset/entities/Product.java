@@ -17,6 +17,64 @@ import org.hibernate.annotations.UuidGenerator;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter @Setter
 public class Product {
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public @NotBlank(message = "Product name is required") String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(@NotBlank(message = "Product name is required") String productName) {
+        this.productName = productName;
+    }
+
+    public @NotBlank(message = "Product description is required") String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(@NotBlank(message = "Product description is required") String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    @Min(value = 0, message = "Price must be at least 0")
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(@Min(value = 0, message = "Price must be at least 0") double price) {
+        this.price = price;
+    }
+
+    @Min(value = 0, message = "Quantity must be at least 0")
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+
+    public void setProductQuantity(@Min(value = 0, message = "Quantity must be at least 0") int productQuantity) {
+        this.productQuantity = productQuantity;
+    }
+
+    public @NotBlank(message = "Inventory id is required") String getInventoryId() {
+        return inventoryId;
+    }
+
+    public void setInventoryId(@NotBlank(message = "Inventory id is required") String inventoryId) {
+        this.inventoryId = inventoryId;
+    }
+
+    public @NotBlank(message = "Category is required") String getCategory() {
+        return category;
+    }
+
+    public void setCategory(@NotBlank(message = "Category is required") String category) {
+        this.category = category;
+    }
+
     @Id
     @UuidGenerator
     @Column(name = "product_id")

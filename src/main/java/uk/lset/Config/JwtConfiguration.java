@@ -1,14 +1,11 @@
 package uk.lset.Config;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Getter @Setter
 @Component
 @ConfigurationProperties(
-        prefix = "uk.co.standevpro.jwt.aws"
+        prefix = "uk.lset.jwt.aws"
 )
 public class JwtConfiguration {
     private String userPoolId;
@@ -31,5 +28,63 @@ public class JwtConfiguration {
         return String.format("https://cognito-idp.%s.amazonaws.com/%s", this.region, this.userPoolId);
     }
 
+    public String getUserPoolId() {
+        return userPoolId;
+    }
 
+    public void setUserPoolId(String userPoolId) {
+        this.userPoolId = userPoolId;
+    }
+
+    public String getIdentityPoolId() {
+        return identityPoolId;
+    }
+
+    public void setIdentityPoolId(String identityPoolId) {
+        this.identityPoolId = identityPoolId;
+    }
+
+    public void setJwkUrl(String jwkUrl) {
+        this.jwkUrl = jwkUrl;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getUserNameField() {
+        return userNameField;
+    }
+
+    public void setUserNameField(String userNameField) {
+        this.userNameField = userNameField;
+    }
+
+    public int getConnectionTimeout() {
+        return connectionTimeout;
+    }
+
+    public void setConnectionTimeout(int connectionTimeout) {
+        this.connectionTimeout = connectionTimeout;
+    }
+
+    public int getReadTimeout() {
+        return readTimeout;
+    }
+
+    public void setReadTimeout(int readTimeout) {
+        this.readTimeout = readTimeout;
+    }
+
+    public String getHttpHeader() {
+        return httpHeader;
+    }
+
+    public void setHttpHeader(String httpHeader) {
+        this.httpHeader = httpHeader;
+    }
 }
