@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import uk.lset.dto.ProductDTO;
 import uk.lset.entities.Product;
 import uk.lset.service.ProductService;
 
@@ -103,5 +104,10 @@ public class ProductController {
         } catch(Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting product. " + e.getMessage());
         }
+    }
+
+    @GetMapping(path = "products/stocks/{id}")
+    public @ResponseBody ProductDTO getProductStocks(@PathVariable String id){
+        return productService.getProductStock(id);
     }
 }
