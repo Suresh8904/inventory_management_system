@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("api/products")
 public class ProductController {
 
     @Autowired
@@ -22,7 +23,7 @@ public class ProductController {
 
     //Add new Product
 
-    @PostMapping(path = "product/addNewProduct")
+    @PostMapping(path = "addNewProduct")
     public ResponseEntity<?> addNewProduct(@RequestBody Product product){
         try {
             return ResponseEntity.ok(productService.addNewProduct(product));
@@ -34,7 +35,7 @@ public class ProductController {
 
     //Request all products
 
-    @GetMapping(path = "products/all")
+    @GetMapping(path = "all")
     public @ResponseBody List<Product> getAllProducts(){
         Product product = null;
         return productService.getAllProducts(product);
@@ -44,7 +45,7 @@ public class ProductController {
 
     //Get all products sorted
     //localhost:8001/products/sort?sortBy=?&ascending=?
-    @GetMapping(path = "products/sort")
+    @GetMapping(path = "/sort")
     public Page<Product> sortProducts(@RequestParam(defaultValue = "0") int page,
                                       @RequestParam(defaultValue = "10") int size,
                                       @RequestParam (required = false) String category,
@@ -57,7 +58,7 @@ public class ProductController {
 
 
     //get products by productId
-    @GetMapping(path = "products/{id}")
+    @GetMapping(path = "/{id}")
     public Optional<Product> productsById(@PathVariable String id){
         Optional<Product> optionalProduct = productService.getProductByProductId(id);
         if (optionalProduct.isEmpty()) {
@@ -67,7 +68,7 @@ public class ProductController {
     }
 
     //Update product
-    @PutMapping(path = "products/update/{id}")
+    @PutMapping(path = "/update/{id}")
     public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable String id) {
         try {
             Optional<Product> productOptional = productService.getProductByProductId(id);
@@ -94,7 +95,7 @@ public class ProductController {
 
 
     //Delete product by supplierCode
-    @DeleteMapping(path = "products/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable String id){
         try {
             productService.deleteProduct(id);
@@ -106,8 +107,20 @@ public class ProductController {
         }
     }
 
-    @GetMapping(path = "products/stocks/{id}")
+    @GetMapping(path = "/stocks/{id}")
     public @ResponseBody ProductDTO getProductStocks(@PathVariable String id){
         return productService.getProductStock(id);
+    }
+
+    @PutMapping(path = "/updateStock/{productId}")
+    public ResponseEntity<Product> updateStock(@PathVariable String productId, @RequestParam int newQuantity){
+        Product updateProductQuantity = productService.updateStock(productId, newQuantity);
+        return ResponseEntity.ok(updateProductQuantity);
+    }
+
+    @PostMapping(path = "addStock/{productId}")
+    public ResponseEntity<Product> addStock(@PathVariable String productId, @RequestParam int newQuantity){
+        Product newProductQuantity = productService.addStock(productId, newQuantity);
+        return ResponseEntity.ok(newProductQuantity);
     }
 }

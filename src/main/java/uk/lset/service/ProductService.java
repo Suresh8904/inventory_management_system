@@ -2,7 +2,6 @@ package uk.lset.service;
 
 
 
-import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -64,7 +63,7 @@ public class ProductService {
 
     @Transactional
     public Product updateProduct(Product product) {
-        if(!productRepository.existsByProductId(product.getProductId())) {
+        if(productRepository.existsByProductId(product.getProductId())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Product with id " + product.getProductId() + " does not exists." );
         }
         return productRepository.save(product);
@@ -72,11 +71,12 @@ public class ProductService {
 
     @Transactional
     public void deleteProduct (String id) {
-        if(!productRepository.existsByProductId(id)) {
+        if(productRepository.existsByProductId(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Product with id " + id + " does not exists." );
         }
         productRepository.deleteById(id);
     }
+
 
     public ProductDTO getProductStock(String id) {
         Product product = productRepository.findById(id).orElse(null);
@@ -88,4 +88,17 @@ public class ProductService {
                 product.getProductName(),
                 product.getProductQuantity());
     }
+
+    public Product updateStock(String productId, int newQuantity) {
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Product with id " + productId + " does not exists."));
+        product.setProductQuantity(newQuantity);
+        return productRepository.save(product);
+    }
+
+    public Product addStock(String productId, int quantityToAdd) {
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Product with id " + productId + " does not exists."));
+        product.setProductQuantity(product.getProductQuantity() + quantityToAdd);
+        return productRepository.save(product);
+    }
+
 }
