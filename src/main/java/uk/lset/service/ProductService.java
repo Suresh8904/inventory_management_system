@@ -61,9 +61,13 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public Product getProductById(String id) {
+        return productRepository.findById(id).isPresent() ? productRepository.findById(id).get() : null;
+    }
+
     @Transactional
     public Product updateProduct(Product product) {
-        if(productRepository.existsByProductId(product.getProductId())) {
+        if(!productRepository.existsByProductId(product.getProductId())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Product with id " + product.getProductId() + " does not exists." );
         }
         return productRepository.save(product);
@@ -100,5 +104,6 @@ public class ProductService {
         product.setProductQuantity(product.getProductQuantity() + quantityToAdd);
         return productRepository.save(product);
     }
+
 
 }

@@ -1,10 +1,12 @@
 package uk.lset.controller;
 
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import uk.lset.dto.ProductDTO;
@@ -14,6 +16,7 @@ import uk.lset.service.ProductService;
 import java.util.List;
 import java.util.Optional;
 
+@Validated
 @RestController
 @RequestMapping("api/products")
 public class ProductController {
@@ -119,7 +122,7 @@ public class ProductController {
     }
 
     @PostMapping(path = "addStock/{productId}")
-    public ResponseEntity<Product> addStock(@PathVariable String productId, @RequestParam int newQuantity){
+    public ResponseEntity<Product> addStock(@PathVariable String productId, @RequestParam @Min(0) int newQuantity){
         Product newProductQuantity = productService.addStock(productId, newQuantity);
         return ResponseEntity.ok(newProductQuantity);
     }

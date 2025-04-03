@@ -1,6 +1,7 @@
 package uk.lset.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class User {
 
     @Column(name = "email", unique = true)
     @NotBlank(message = "E-mail is required")
+    @Email
     private String email;
 
     @Column(name = "password")
