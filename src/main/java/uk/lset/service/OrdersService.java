@@ -10,6 +10,7 @@ import uk.lset.repository.OrdersRepository;
 import uk.lset.repository.ProductRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class OrdersService {
@@ -28,17 +29,31 @@ public class OrdersService {
     private final ProductRepository productRepository;
 
 
+/*
     public Orders addNewOrder(String productId, int quantity) {
         if(!productRepository.existsById(productId)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Product with id " + productId + " does not exists." );
         }
-        Orders order = new Orders();
-        Product orderProduct = productService.getProductById(productId);
-        order.setProduct_id(orderProduct.getInventoryId());
-        order.setProduct_price(orderProduct.getPrice());
-        order.setEmail(order.getProduct_id());
-        order.setOrder_value(quantity * orderProduct.getPrice());
 
+        Product orderProduct = productService.getProductById(productId);
+        Orders order = new Orders();
+
+        order.setProductId(orderProduct.getInventoryId());
+        order.setProductPrice(orderProduct.getPrice());
+        order.setQuantity(quantity);
+        order.setOrderValue(quantity * orderProduct.getPrice());
+        order.setCorder(UUID.randomUUID().toString());
+(
+        order.setClient_Name(client_Name);
+        order.setEmail(email);
+        order.setDeliveryAddress(deliveryAddress);
+        order.setStatus(status);
         return ordersRepository.save(order);
     }
+
+    private String generateCoder(){
+        return "C-" + UUID.randomUUID().toString().substring(0, 8);
+    }
+    */
+
 }
