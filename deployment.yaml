@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: inventory-management-system
-          image: ap0l0d0r/inventory-management-system:1.0.0 # Image that will be used to containers in the cluster
+          image: sureshk89/inventory-management-system:1.0.0 # Image that will be used to containers in the cluster
           imagePullPolicy: Always
           ports:
             - containerPort: 8001 # The port that the container is running on in the cluster

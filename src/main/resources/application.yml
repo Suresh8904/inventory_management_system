@@ -6,9 +6,9 @@ spring:
     name: inventory_management_system
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/inventory_management_system
-    username: "root"
-    password: "Iceland1!"
+    url: jdbc:mysql://db-mysql-lon1-75379-do-user-19481328-0.d.db.ondigitalocean.com:25060/inventory_management_system
+    username: "inventory_management_system"
+    password: "AVNS_W2DnzTZix5kFAUz4m2G"
     hikari:
       initialization-fail-timeout: 0
   sql:
@@ -29,7 +29,7 @@ spring:
             clientId: clientId
             clientSecret: clientSecret
             scope: openid
-            redirect-uri: http://localhost:8080/login/oauth2/code/cognito
+            redirect-uri: http://standevpro.co.uk/login/oauth2/code/cognito
             clientName: clientName
         provider:
           cognito:
@@ -53,7 +53,7 @@ springdoc:
 #Spring Security with Cognito
 uk:
   lset:
-    service_url: http://localhost:8009
+    service_url: http://standevpro.co.uk
     jwt:
       aws:
         userPoolId: us-east-1_5MncTZem5
