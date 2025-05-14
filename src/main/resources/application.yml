@@ -3,12 +3,12 @@ server:
 
 spring:
   application:
-    name: inventory_management_system
+    name: inventory-management-system
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://db-mysql-lon1-75379-do-user-19481328-0.d.db.ondigitalocean.com:25060/inventory_management_system
-    username: "inventory_management_system"
-    password: "AVNS_W2DnzTZix5kFAUz4m2G"
+    url: jdbc:mysql://db-mysql-lon1-06524-do-user-22105866-0.e.db.ondigitalocean.com:25060/inventory-management-system
+    username: "inventory-management-system"
+    password: "AVNS_1tRdy9G5eUOOXvcX78m"
     hikari:
       initialization-fail-timeout: 0
   sql:
